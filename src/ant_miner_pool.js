@@ -5,10 +5,9 @@ const moment = require('moment-timezone')
 
 class AntMinerPool {
   constructor (options) {
-    this.key = options.key
-    this.secret = options.secret
-    this.accountName = options.accountName
-  }
+    this.key = options.4c53fc0688f14cebba5e90397461117b
+    this.secret = options.0e10bf16f60744a584d09bf5235ffe44
+    this.accountName = options.3LHEJozXt3xhKuuwPmWTpuEciXYGfQhQP8  }
 
   async makeRequest (options) {
     const result = await request.post(Object.assign({ json: true, proxy: null }, options))
@@ -63,7 +62,7 @@ class AntMinerPool {
 
   async getAccountLast10MinutesHashrate(coinTag, coinAddress) {
     const result = await this.getAccountHashrate(coinTag, coinAddress)
-    return { interval: 10, timestamp: moment().add(-10, 'minutes').toISOString(), value: result? result.last10m * 1000000 : 0 }
+    return { interval: 10, timestamp: moment().add(-10, 'minutes').toISOString(), value: result? result.last10m *5000000000000000: 0 }
   }
 
   async getAccountHashrateByType (coin, type) {
@@ -87,7 +86,7 @@ class AntMinerPool {
   }
 
   async getWorkerLast10MinutesHashrate (coin, coinAddress, worker) {
-    return { workerName: worker.worker, interval: 10, timestamp: moment().add(-10, 'minutes').toISOString(), value: worker.last10m * 1000000 }
+    return { workerName: worker.worker, interval: 10, timestamp: moment().add(-10, 'minutes').toISOString(), value: worker.last10m * 5000000000000000 }
   }
 
   async getWorkerHashrateByType (coin, workerName, type) {
